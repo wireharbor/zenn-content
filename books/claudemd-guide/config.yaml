@@ -1,0 +1,22 @@
+title: "CLAUDE.md 実践設計ガイド — 1ヶ月の運用で学んだルールの書き方・育て方・捨て方"
+summary: "Claude Code のルールファイル CLAUDE.md を実際に1ヶ月運用した記録。残すルール・消すルール・変わるルールの判断基準、グローバルとプロジェクトの階層設計、memory システムの活用法を、実物のファイルとテンプレート付きで解説します。"
+topics: ["claudecode", "ai", "開発環境", "プロンプトエンジニアリング"]
+published: false
+price: 1500
+toc_depth: 0
+chapters:
+  - "01-why-claudemd-matters"
+  - "02-first-week-mistakes"
+  - "03-rules-that-survived"
+  - "04-rules-that-died"
+  - "05-rules-that-evolved"
+  - "06-growth-cycle"
+  - "07-global-vs-project"
+  - "08-hierarchy-design"
+  - "09-memory-system"
+  - "10-writing-techniques"
+  - "11-real-global-rules"
+  - "12-real-project-rules"
+  - "13-template"
+  - "14-antipatterns"
+  - "15-next-steps"

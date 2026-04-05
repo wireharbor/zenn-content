@@ -55,6 +55,10 @@ type: feedback
 
 ## Memory の4タイプ
 
+:::message
+Memory のタイプ分類（user / feedback / project / reference）は、筆者が自分の運用で定義したものです。Claude Code の公式機能として4タイプが組み込まれているわけではありません。Memory ファイルの frontmatter に `type` フィールドを設けて分類する運用を筆者が行っており、Claude はそれに従って動作しています。タイプの名前や分類基準は、あなたのプロジェクトに合わせて自由に変えて構いません。
+:::
+
 ### 1. user: ユーザー情報
 
 Claude がユーザーに合わせた応答をするための情報。

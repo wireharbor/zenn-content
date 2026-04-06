@@ -3,7 +3,7 @@ title: "MCP サーバーのツールを7個から3個に統合した設計判断
 emoji: "🔧"
 type: "tech"
 topics: ["mcp", "claudecode", "python", "fastmcp", "ai"]
-published: false
+published: true
 ---
 
 ## はじめに

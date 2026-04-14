@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# pre-push hook: push される変更に秘密情報が含まれていないかスキャンする。
+# 有効化: bash scripts/setup_githooks.sh （新規クローン時に 1 回実行）
+#
+# stdin に「<local_ref> <local_sha> <remote_ref> <remote_sha>」が ref ごとに渡される。
+# scan_secrets.sh --push へそのまま流して push 差分を検査する。
+
+set -euo pipefail
+
+WORKSPACE_ROOT="$(git rev-parse --show-toplevel)"
+
+if [[ ! -f "$WORKSPACE_ROOT/scripts/scan_secrets.sh" ]]; then
+  echo "⚠ scan_secrets.sh が見つかりません。pre-push スキャンをスキップします。"
+  exit 0
+fi
+
+exec bash "$WORKSPACE_ROOT/scripts/scan_secrets.sh" --push

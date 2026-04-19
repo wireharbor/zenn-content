@@ -1,0 +1,37 @@
+title: "自分のポートフォリオをAIに相談する — 動いた後の運用設計ガイド"
+summary: "note『自分のポートフォリオをAIに相談する』連載で最短ルートを通した先で、実運用に入ったときに詰まる場所・壊れる場所・守るべき境界を体系化する。エラー図鑑、セキュリティ設計、MCP 内部構造、プラットフォーム移行、データ設計、実用ユースケースを運用視点で書く。連載を読まなくても読める。"
+topics: ["ai", "chatgpt", "claude", "個人開発", "api"]
+published: true
+price: 2000
+toc_depth: 0
+chapters:
+  # 本書の位置づけ
+  - "01-book-positioning"
+  - "02-minimum-path-recap"
+  # エラー図鑑
+  - "03-errors-install"
+  - "04-errors-runtime"
+  - "05-errors-deploy"
+  - "06-errors-connection"
+  # セキュリティ設計
+  - "07-security-exposure-boundary"
+  - "08-security-auth-choice"
+  - "09-security-personal-data"
+  # MCP と FastAPI の内部
+  - "10-mcp-protocol-internals"
+  - "11-fastmcp-vs-manual"
+  # プラットフォーム
+  - "12-platform-comparison"
+  - "13-migration-runbook"
+  # データ設計
+  - "14-data-freshness"
+  - "15-data-history"
+  - "16-data-diff"
+  # ユースケース
+  - "17-use-case-monitoring"
+  - "18-use-case-stress-test"
+  - "19-use-case-news"
+  - "20-use-case-rebalance"
+  # 締め
+  - "21-what-worked-what-didnt"
+  - "22-next-horizons"

@@ -1,17 +1,32 @@
 #!/usr/bin/env bash
-# pre-push hook: push される変更に秘密情報が含まれていないかスキャンする。
+# pre-push hook: push される変更に秘密情報や内部識別子が混入していないかスキャンする。
 # 有効化: bash scripts/setup_githooks.sh （新規クローン時に 1 回実行）
 #
 # stdin に「<local_ref> <local_sha> <remote_ref> <remote_sha>」が ref ごとに渡される。
-# scan_secrets.sh --push へそのまま流して push 差分を検査する。
+# scan_secrets.sh（API キー / トークン検出）と scan_public_exposure.sh（内部識別子検出）の
+# 両方へ同じ refs を流して push 差分を検査する。
 
 set -euo pipefail
 
 WORKSPACE_ROOT="$(git rev-parse --show-toplevel)"
 
-if [[ ! -f "$WORKSPACE_ROOT/scripts/scan_secrets.sh" ]]; then
-  echo "⚠ scan_secrets.sh が見つかりません。pre-push スキャンをスキップします。"
-  exit 0
+# stdin を両方のスキャナに渡すため、一度 tmpfile に保存する
+REFS_FILE=$(mktemp)
+cat > "$REFS_FILE"
+trap 'rm -f "$REFS_FILE"' EXIT
+
+STATUS=0
+
+if [[ -f "$WORKSPACE_ROOT/scripts/scan_secrets.sh" ]]; then
+  bash "$WORKSPACE_ROOT/scripts/scan_secrets.sh" --push < "$REFS_FILE" || STATUS=$?
+else
+  echo "⚠ scan_secrets.sh が見つかりません。秘密情報スキャンをスキップします。"
 fi
 
-exec bash "$WORKSPACE_ROOT/scripts/scan_secrets.sh" --push
+if [[ -f "$WORKSPACE_ROOT/scripts/scan_public_exposure.sh" ]]; then
+  bash "$WORKSPACE_ROOT/scripts/scan_public_exposure.sh" --push < "$REFS_FILE" || STATUS=$?
+else
+  echo "⚠ scan_public_exposure.sh が見つかりません。公開キーワードスキャンをスキップします。"
+fi
+
+exit "$STATUS"

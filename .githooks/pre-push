@@ -29,4 +29,10 @@ else
   echo "⚠ scan_public_exposure.sh が見つかりません。公開キーワードスキャンをスキップします。"
 fi
 
+# Python dead code 検出（confidence 100% のみ block、60-99% は警告表示のみ）。
+# vulture が install されていないと skip。
+if [[ -f "$WORKSPACE_ROOT/scripts/check_dead_code.sh" ]]; then
+  bash "$WORKSPACE_ROOT/scripts/check_dead_code.sh" || STATUS=$?
+fi
+
 exit "$STATUS"
